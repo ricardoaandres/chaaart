@@ -16,5 +16,5 @@
         "color": "e8716b"
     }
   ],
-  "xAxisLabels": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Nov", "Dic"]
+  "xAxisLabels": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Ago", "Sep", "Nov", "Dec"]
 }
