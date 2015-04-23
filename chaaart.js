@@ -34,6 +34,9 @@ function initialize () {
   var pkg = require(path.join(__dirname, 'package.json')),
       errorMessage = 'Missing %s. Type --help for documentation';
 
+  process.title = 'chaaart';
+  program.name = 'chaaart';
+
   program.on('--help', function () {
     console.log('  Example:');
     console.log('');
@@ -49,12 +52,14 @@ function initialize () {
     .option('-o, --output', 'Output file name')
     .parse(process.argv);
 
-  if (!program.chart) {
+  // checking if chart options is valid
+  if (!program.chart || typeof program.chart !== String || !program.chart.match(/(line|pie|bar|qr)/)) {
     console.log(chalk.red(errorMessage), 'chart type');
     process.exit(1);
   }
 
-  if (!program.output) {
+  // checking if output path is valid
+  if (!program.output || typeof program.output !== String) {
     console.log(chalk.red(errorMessage), 'output path');
     process.exit(1);
   }
@@ -66,8 +71,6 @@ function initialize () {
   var chart, months;
 
   initialize();
-
-  console.log(program);
 
   chart = quiche(program.chart);
   months = ['', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Nov', 'Dic'];
