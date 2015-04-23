@@ -1,0 +1,16 @@
+{
+  "name": "chaaart",
+  "version": "0.2.0",
+  "description": "",
+  "main": "chaaart.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^1.0.0",
+    "commander": "^2.8.0",
+    "quiche": "0.0.8"
+  }
+}
