@@ -74,7 +74,7 @@ function initialize () {
   chart = quiche(program.chart);
   months = ['', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Nov', 'Dic'];
 
-  // chart.setTitle(program.title);
+  chart.setTitle(program.title);
   chart.addData([1000, 1500, 2000, 1300, 5000, 4300, 800, 1000, 2500, 2200, 2000, 2000], 'kWh', '4e4e99');
   chart.addAxisLabels('x', months);
   chart.setWidth(430);
