@@ -12,5 +12,8 @@
     "chalk": "^1.0.0",
     "commander": "^2.8.0",
     "quiche": "0.0.8"
+  },
+  "bin": {
+    "chaaart": "chaaart.js"
   }
 }
