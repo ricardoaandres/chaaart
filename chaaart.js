@@ -19,7 +19,6 @@ function saveImage (chart) {
       imageData += chunk;
     });
 
-    console.log(program.output);
     response.on('end', function () {
       fs.writeFile(program.output, imageData, 'binary', function (error) {
         if (error) {
@@ -47,19 +46,19 @@ function initialize () {
 
   program
     .version(pkg.version)
-    .option('-t, --title', 'Add chart title')
-    .option('-c, --chart', 'Add chart type')
-    .option('-o, --output', 'Output file name')
+    .option('-t, --title [value]', 'Add chart title')
+    .option('-c, --chart <value>', 'Add chart type', /^(line|bar|pie|qr)$/i)
+    .option('-o, --output <value>', 'Output file name')
     .parse(process.argv);
 
   // checking if chart options is valid
-  if (!program.chart || typeof program.chart !== String || !program.chart.match(/(line|pie|bar|qr)/)) {
+  if (!program.chart || typeof program.chart !== 'string' || !program.chart.match(/(line|pie|bar|qr)/)) {
     console.log(chalk.red(errorMessage), 'chart type');
     process.exit(1);
   }
 
   // checking if output path is valid
-  if (!program.output || typeof program.output !== String) {
+  if (!program.output || typeof program.output !== 'string') {
     console.log(chalk.red(errorMessage), 'output path');
     process.exit(1);
   }
