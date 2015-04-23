@@ -49,11 +49,18 @@ function initialize () {
     .option('-t, --title [value]', 'Add chart title')
     .option('-c, --chart <value>', 'Add chart type', /^(line|bar|pie|qr)$/i)
     .option('-o, --output <value>', 'Output file name')
+    .option('-j, --json <value>', 'Input file name', 'sample.json')
     .parse(process.argv);
 
   // checking if chart options is valid
   if (!program.chart || typeof program.chart !== 'string' || !program.chart.match(/(line|pie|bar|qr)/)) {
     console.log(chalk.red(errorMessage), 'chart type');
+    process.exit(1);
+  }
+
+  // checking if output path is valid
+  if (!program.json || typeof program.json !== 'string') {
+    console.log(chalk.red(errorMessage), 'json path');
     process.exit(1);
   }
 
@@ -67,18 +74,33 @@ function initialize () {
 +function () {
   'use strict';
 
-  var chart, months;
+  var chart, xAxisLabels, json;
 
   initialize();
 
-  chart = quiche(program.chart);
-  months = ['', 'Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Nov', 'Dic'];
+  if (program.chart === 'line') {
+    chart = quiche(program.chart);
+    json = JSON.parse(fs.readFileSync(program.json, 'utf8'));
 
-  chart.setTitle(program.title);
-  chart.addData([1000, 1500, 2000, 1300, 5000, 4300, 800, 1000, 2500, 2200, 2000, 2000], 'kWh', '4e4e99');
-  chart.addAxisLabels('x', months);
-  chart.setWidth(430);
-  chart.setHeight(230);
+    xAxisLabels = json.xAxisLabels;
 
-  saveImage(chart);
+    chart.setTitle(program.title);
+    chart.addAxisLabels('x', xAxisLabels);
+    chart.setWidth(430);
+    chart.setHeight(230);
+
+
+    json.data.forEach(function (data) {
+      console.log(data);
+      chart.addData(data.values, data.legend, data.color);
+    });
+
+    saveImage(chart);
+  } else {
+    console.log(chalk.blue('We are very ashamed, but %s chart is not yet supported :('), program.chart);
+    console.log(chalk.blue('Open an issue or fork it to make chaaart even better'));
+    console.log('');
+    console.log(chalk.yellow('https://github.com/ricardoaandres/chaaart/issues'));
+    process.exit(1);
+  }
 }();
