@@ -1,13 +1,10 @@
 {
   "name": "chaaart",
-  "version": "0.2.0",
-  "description": "",
+  "version": "0.2.1",
+  "description": "Turn your json encoded data into an awesome chart PNG.",
   "main": "chaaart.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "author": "Ricardo Andrés Bello",
+  "license": "MIT",
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.8.0",
