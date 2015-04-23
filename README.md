@@ -55,7 +55,7 @@ Given the following json (sample.json):
 
 running `$chaaart --title Rainbow --chart line --json sample.json --output chart.png` will output
 
-![chart.png](chart.png)
+![chart.png](sample.png)
 
 ## contribute
 
