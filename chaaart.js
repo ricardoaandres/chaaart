@@ -74,7 +74,7 @@ function initialize () {
 +function () {
   'use strict';
 
-  var chart, xAxisLabels, json;
+  var chart, xAxisLabels, json, pie;
 
   initialize();
 
@@ -96,6 +96,21 @@ function initialize () {
     });
 
     saveImage(chart);
+  } else if (program.chart === 'pie') {
+    pie = quiche(program.chart);
+    json = JSON.parse(fs.readFileSync(program.json, 'utf8'));
+
+    pie.setWidth(430);
+    pie.setHeight(230);
+    pie.setLabels(json.labels);
+    pie.setLegendTop();
+
+    json.data.forEach(function (data) {
+      pie.addData(data.values, data.legend, data.color);
+    });
+
+    saveImage(pie);
+
   } else {
     console.log(chalk.blue('We are very ashamed, but %s chart is not yet supported :('), program.chart);
     console.log(chalk.blue('Open an issue or fork it to make chaaart even better'));
