@@ -1,6 +1,6 @@
 {
   "name": "chaaart",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Turn your json encoded data into an awesome chart PNG.",
   "main": "chaaart.js",
   "author": "Ricardo Andrés Bello",
@@ -8,7 +8,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "commander": "^2.8.0",
-    "quiche": "0.0.8"
+    "quiche": "git://github.com/gpcweb/quiche.git#add-labels-to-pie-chart"
   },
   "bin": {
     "chaaart": "chaaart.js"
